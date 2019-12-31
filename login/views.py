@@ -106,7 +106,7 @@ class EditUser(LoginRequiredMixin, View):
 			error = "Произошла ошибка в сохранении пользователя!"
 			return render(request, "login/edit.html", context={"form": bound_form, "user": user})
 
-class CreateAccount(LoginRequiredMixin, View):
+class CreateAccount(View):
 
 	def get(self, request):
 		form = UserCreationForm()

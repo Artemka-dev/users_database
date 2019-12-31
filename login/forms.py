@@ -5,6 +5,12 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 
+# Admin
+# userAdmin123
+
+# Artem
+# userArtem234
+
 class UserForm(forms.ModelForm):
 
 	class Meta:

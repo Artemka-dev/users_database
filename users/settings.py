@@ -132,3 +132,18 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = "Deny"
 SECURE_CONTENT_TYPE_NOSNIFF = True
+
+
+# Email
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = "artemka_pro@inbox.ru"
+EMAIL_HOST_PASSWORD = "judo367256"
+EMAIL_USE_TLS = True
+
+
+
+
+
+
+

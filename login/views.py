@@ -14,6 +14,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 
+from django.core.mail import EmailMessage
+# from ipware.ip import get_real_ip
+from ipware import get_client_ip
+
 # Create your views here.
 class Home(LoginRequiredMixin, View):
 
@@ -21,6 +25,7 @@ class Home(LoginRequiredMixin, View):
 		active = "home"
 		users = UserObj.objects.all()
 		form = UserForm()
+
 		return render(request, "login/home.html", context={"active": active, "users": users, "form": form})
 
 	def post(self, request):
@@ -63,6 +68,18 @@ class LoginUser(View):
 		user = auth.authenticate(username = username, password = password)
 		if user is not None:
 			auth.login(request, user)
+
+			client_ip, is_routable = get_client_ip(request)
+
+			email = EmailMessage(
+				subject="От администрации django",
+				body=f"Был выполнен вход на ваш аккаунт - {client_ip}",
+				from_email="artemka_pro@inbox.ru",
+				to=[user.email],
+				reply_to=[user.email, "artemka_pro@inbox.ru"]
+			)
+			sent = email.send(fail_silently=False)
+
 			return redirect("home_page")
 		else:
 			error = "Пользователь не найден"

@@ -1,0 +1,18 @@
+{% extends 'login/base_app.html' %}
+
+{% block title %}
+	Edit page "{{ user.name }}" - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+	<h1 align="center" class="mb-5">Редактировать "{{ user.name }}"</h1>
+	<div class="container col-7">
+		{% load crispy_forms_tags %}
+		<form action="{% url 'edit_page' user_id=user.id %}" method="post">
+			{% csrf_token %}
+
+			{{ form|crispy }}
+			<button type="submit" class="btn btn-primary">Сохранить изменения</button>
+		</form>
+	</div>
+{% endblock %}

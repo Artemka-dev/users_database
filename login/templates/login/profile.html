@@ -1,0 +1,24 @@
+{% extends "login/base_app.html" %}
+
+{% block title %}
+	Profile - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+	{% load crispy_forms_tags %}
+
+	<h1 align="center" class="mb-5">Профиль пользователя "{{ request.user.username }}"</h1>
+	
+	<div class="container col-8">
+
+		<form action="{% url 'profile_page' %}" method="post">
+			{% csrf_token %}
+
+			{% include "include/error_alert.html" %}
+
+			{{ form|crispy }}
+			<button class="btn btn-primary mb-5">Изменить</button>
+		</form>
+	</div>
+	
+{% endblock %}

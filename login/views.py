@@ -74,9 +74,9 @@ class LoginUser(View):
 				email = EmailMessage(
 					subject="От администрации django",
 					body=f"Был выполнен вход на ваш аккаунт - {client_ip}",
-					from_email="artemka_pro@inbox.ru",
+					from_email="django_email@python.ru",
 					to=[user.email],
-					reply_to=[user.email, "artemka_pro@inbox.ru"]
+					reply_to=[user.email]
 				)
 				sent = email.send(fail_silently=False)
 			except Exception:

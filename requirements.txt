@@ -1,0 +1,5 @@
+pip install django
+pip install django-crispy-forms
+pip install django-grappelli
+pip install django-ipware
+pip install Pillow

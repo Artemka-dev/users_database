@@ -133,18 +133,3 @@ SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = "Deny"
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
-
-# Email
-EMAIL_HOST = 'smtp.mail.ru'
-# EMAIL_PORT = 2525
-EMAIL_PORT = 2525
-EMAIL_HOST_USER = "django_web@inbox.ru"
-EMAIL_HOST_PASSWORD = "webFramework2005.python"
-EMAIL_USE_TLS = True
-
-
-
-
-
-
-

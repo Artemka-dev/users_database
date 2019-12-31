@@ -69,16 +69,18 @@ class LoginUser(View):
 		if user is not None:
 			auth.login(request, user)
 
-			client_ip, is_routable = get_client_ip(request)
-
-			email = EmailMessage(
-				subject="От администрации django",
-				body=f"Был выполнен вход на ваш аккаунт - {client_ip}",
-				from_email="artemka_pro@inbox.ru",
-				to=[user.email],
-				reply_to=[user.email, "artemka_pro@inbox.ru"]
-			)
-			sent = email.send(fail_silently=False)
+			try:
+				client_ip, is_routable = get_client_ip(request)
+				email = EmailMessage(
+					subject="От администрации django",
+					body=f"Был выполнен вход на ваш аккаунт - {client_ip}",
+					from_email="artemka_pro@inbox.ru",
+					to=[user.email],
+					reply_to=[user.email, "artemka_pro@inbox.ru"]
+				)
+				sent = email.send(fail_silently=False)
+			except Exception:
+				return redirect("home_page")
 
 			return redirect("home_page")
 		else:

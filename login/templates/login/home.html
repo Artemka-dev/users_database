@@ -51,28 +51,32 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for user in users %}
-				<tr>
-					<th scope="row">{{ user.id }}</th>
-					<td>{{ user.name }}</td>
-					<td>{{ user.phone_number }}</td>
-					<td>{{ user.email }}</td>
-					<td>{{ user.address }}</td>
-					<td>{{ user.description|truncatewords:5 }}</td>
-					
-					<td>
-						<div class="btn-group dropup">
-							<a class="btn btn-info btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Действия
-							</a>
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-								<a class="dropdown-item" href="{% url 'edit_page' user_id=user.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Редактировать</a>
-								<a class="dropdown-item" href="{% url 'delete_page' user_id=user.id %}"><i class="fa fa-trash" aria-hidden="true"></i> Удалить</a>
+			{% if users %}
+				{% for user in users %}
+					<tr>
+						<th scope="row">{{ user.id }}</th>
+						<td>{{ user.name }}</td>
+						<td>{{ user.phone_number }}</td>
+						<td>{{ user.email }}</td>
+						<td>{{ user.address }}</td>
+						<td>{{ user.description|truncatewords:5 }}</td>
+						
+						<td>
+							<div class="btn-group dropup">
+								<a class="btn btn-info btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Действия
+								</a>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+									<a class="dropdown-item" href="{% url 'edit_page' user_id=user.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Редактировать</a>
+									<a class="dropdown-item" href="{% url 'delete_page' user_id=user.id %}"><i class="fa fa-trash" aria-hidden="true"></i> Удалить</a>
+								</div>
 							</div>
-						</div>
-					</td>
-				</tr>
-			{% endfor %}
+						</td>
+					</tr>
+				{% endfor %}
+			{% else %}
+				<h6 align="center" class="mb-3" style="color: red;">!!! Не было создано ни одного пользователя !!!</h6>
+			{% endif %}
 		</tbody>
 	</table>
 {% endblock %}
